@@ -19,3 +19,5 @@ resources:
 
 steps:
 - template: package-publish.yml@templates
+  parameters:
+    nuGetFeedType: 'external'
