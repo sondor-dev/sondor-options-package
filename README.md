@@ -13,4 +13,4 @@ dotnet add package Sondor.Options
 ```
 
 ## Getting started
-Follow the package instructions [here](/Sondor.Options/README.md).
+Follow the package instructions [here](/Sondor.Options/Sondor.Options/README.md).
