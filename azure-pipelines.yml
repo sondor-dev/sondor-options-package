@@ -1,0 +1,21 @@
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- name: major
+  value: 1
+- name: minor
+  value: 0
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: sondor-pipeline-templates
+      ref: master
+
+steps:
+- template: package-publish.yml@templates
