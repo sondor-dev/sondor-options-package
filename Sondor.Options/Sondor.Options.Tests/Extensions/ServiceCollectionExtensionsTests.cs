@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Sondor.Options.Extensions;
 using Microsoft.Extensions.Options;
@@ -7,7 +6,7 @@ using Microsoft.Extensions.Options;
 namespace Sondor.Options.Tests.Extensions;
 
 /// <summary>
-/// Tests for <see cref="Sondor.Options.Extensions.ServiceCollectionExtensions"/>.
+/// Tests for <see cref="ServiceCollectionExtensions"/>.
 /// </summary>
 [TestFixture]
 public class ServiceCollectionExtensionsTests
@@ -26,23 +25,17 @@ public class ServiceCollectionExtensionsTests
 
         var configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.Sources.Clear();
-        configurationBuilder.AddInMemoryCollection([
-            new KeyValuePair<string, string?>($"{nameof(TestOptions)}:{nameof(TestOptions.Name)}", TestConstants.TestName),
-            new KeyValuePair<string, string?>($"{nameof(TestOptions)}:{nameof(TestOptions.Description)}", TestConstants.TestDescription)
-        ]);
+        configurationBuilder.AddJsonFile("appsettings.json");
 
         _services.AddSingleton<IConfiguration>(configurationBuilder.Build());
     }
 
     /// <summary>
-    /// Ensures that <see cref="Sondor.Options.Extensions.ServiceCollectionExtensions.AddSondorOptions{TOptions}"/> loads and validates options.
+    /// Ensures that <see cref="ServiceCollectionExtensions.AddSondorOptions{TOptions}"/> loads and validates options.
     /// </summary>
     [Test]
-    public void AddOptions()
+    public void AddSondorOptions()
     {
-        // arrange
-        _services.AddValidatorsFromAssembly(typeof(TestConstants).Assembly);
-
         // arrange
         _services.AddSondorOptions<TestOptions>();
 
@@ -50,6 +43,7 @@ public class ServiceCollectionExtensionsTests
         using var serviceProvider = _services.BuildServiceProvider();
         var options = serviceProvider.GetRequiredService<IOptions<TestOptions>>().Value;
 
+        // assert
         Assert.Multiple(() =>
         {
             Assert.That(options, Is.Not.NaN);

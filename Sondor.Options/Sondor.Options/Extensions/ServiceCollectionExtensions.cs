@@ -25,6 +25,8 @@ public static class ServiceCollectionExtensions
             section = typeof(TOptions).Name;
         }
 
+        services.AddValidatorsFromAssembly(typeof(TOptions).Assembly);
+
         services
             .AddOptions<TOptions>()
             .BindConfiguration(section)
