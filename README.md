@@ -1,5 +1,6 @@
 # Sondor Options
-[![Build Status](https://dev.azure.com/sondortechnology/Sondor%20Infrastructure/_apis/build/status%2Fsondor-dev.sondor-options-package?repoName=sondor-dev%2Fsondor-options-package&branchName=master)](https://dev.azure.com/sondortechnology/Sondor%20Infrastructure/_build/latest?definitionId=101&repoName=sondor-dev%2Fsondor-options-package&branchName=master)
+![Build Status](https://dev.azure.com/sondortechnology/Sondor%20Infrastructure/_apis/build/status%2Fsondor-dev.sondor-options-package?repoName=sondor-dev%2Fsondor-options-package&branchName=master) ![NuGet Downloads](https://img.shields.io/nuget/dt/Sondor.Options)
+
 
 Sondor Options is a library for managing application settings in .NET applications.
 It provides a simple and flexible way to define,validate, and access application options.
