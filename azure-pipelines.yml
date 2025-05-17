@@ -9,6 +9,8 @@ variables:
   value: 1
 - name: minor
   value: 0
+- name: repository
+  value: sondor-options-package
 
 resources:
   repositories:
@@ -21,3 +23,4 @@ steps:
 - template: package-publish.yml@templates
   parameters:
     nuGetFeedType: 'external'
+    repository: ${{ variables.repository }}
