@@ -11,6 +11,7 @@ variables:
   value: 0
 - name: repository
   value: sondor-options-package
+- group: sondor-git
 
 resources:
   repositories:
