@@ -25,6 +25,20 @@ public class SondorOptionsValidatorTests
     }
 
     /// <summary>
+    /// Ensures that <see cref="SondorOptionsValidator{TOptions}.Validate"/> throws an <see cref="ArgumentNullException"/> when the options are null.
+    /// </summary>
+    [Test]
+    public void SondorOptionsValidator_throws_argument_null_exception()
+    {
+        // arrange
+        var serviceProvider = _services.BuildServiceProvider();
+        var validator = new SondorOptionsValidator<TestOptions>(serviceProvider, nameof(TestOptions));
+
+        // act && assert
+        Assert.Throws<ArgumentNullException>(() => validator.Validate(nameof(TestOptions), null));
+    }
+
+    /// <summary>
     /// Ensures that <see cref="SondorOptionsValidator{TOptions}.Validate"/> returns the <see cref="ValidateOptionsResult.Skip"/> when the name doesn't match.
     /// </summary>
     [Test]

@@ -29,14 +29,17 @@ public class SondorOptionsValidator<TOptions>(IServiceProvider serviceProvider,
     private readonly IServiceProvider _serviceProvider = serviceProvider;
 
     /// <inheritdoc />
-    public ValidateOptionsResult Validate(string? name, TOptions options)
+    public ValidateOptionsResult Validate(string? name, TOptions? options)
     {
         if (_name is not null && _name != name)
         {
             return ValidateOptionsResult.Skip;
         }
 
-        ArgumentNullException.ThrowIfNull(options);
+        if (options is null)
+        {
+            throw new ArgumentNullException(nameof(options), "Options cannot be null.");
+        }
 
         using var scope = _serviceProvider.CreateScope();
 
